@@ -1,5 +1,5 @@
 ## DarkSky - Async Python 3 Library
-Designed with native asyncio support, this libary is better suited to those who need better concurrency support than running a `run_in_executor`
+Designed with native asyncio support, this libary is better suited to those who need better concurrency support than running requests inside `run_in_executor`.
 
 ## Usage
 You can use several methods to use this libary, including directly calling the helper function `forecast`. This offers no setup but is significantly slower due to the need to create the client in the background everytime. Its better to just create the client and save it to a variable than using this function.
