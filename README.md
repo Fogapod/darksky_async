@@ -21,7 +21,7 @@ import asyncio
 import darksky_async
 
 async def example_function():
-  result = await darksky_async.forecast(key, latitude, longitude)
+  result = await darksky_async.forecast(key, latitude, longitude, exclude=['minutely', 'hourly'], units='si')
   
 loop = asyncio.get_event_loop()
 
