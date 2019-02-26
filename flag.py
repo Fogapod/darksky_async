@@ -8,10 +8,8 @@ class Flags():
                 sources = []
                 for source_code in value:
                     # dont add anything we dont recognise
-                    print(source_code)
-                    sources.append(find_source(source_code))
                     try:
-                        pass
+                        sources.append(find_source(source_code))
                     except:
                         pass
                 value = sources
