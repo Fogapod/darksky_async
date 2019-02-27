@@ -48,3 +48,14 @@ class Forecast():
                 pass
             elif key == 'flags':
                 setattr(self, key, Flags(**value))
+
+    @property
+    def total_cost(self):
+        """
+        Returns the amount due for this key per day
+        Amount is in Dollars
+        """
+        if self.headers.get('X-Forecast-API-Calls', 0) < 1000:
+            return 0
+        else:
+            return (self.headers.get('X-Forecast-API-Calls', 0) - 1000) / 0.0001
