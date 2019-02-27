@@ -27,3 +27,13 @@ loop = asyncio.get_event_loop()
 
 loop.run_until_complete(example_function())
 ```
+
+## Extra features
+All time-based entries for DataPoint have a local version as well. Thanks to PyTz we can convert the datetime to the local time for quicker and easier access of time.
+All you need to do to access this local time is append `Local` to any time-based datapoint:
+```py
+weather = await client.forecast(37.8267, -122.4233)
+
+utc_time = weather.daily.data[0].sunriseTime
+local = weather.daily.data[0].sunriseTimeLocal
+```
