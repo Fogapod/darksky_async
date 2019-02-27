@@ -56,9 +56,11 @@ def find_source(source_code):
         'name': 'Unknown Source',
         'url': 'https://darksky.net/dev/docs/sources'
     })
-    
+
     if not source:
         raise ValueError('Source id does not exist')
+    
+    source['id'] = source_code
 
     if 'availability' not in source:
         source['availability'] = 'global'
@@ -69,6 +71,12 @@ def find_source(source_code):
         def __init__(self, **source):
             for k, v in source.items():
                 setattr(self, k, v)
+
+        def __str__(self):
+            return self.name
+
+        def __repr__(self):
+            return f'<DarkSkySource id="{self.id}" name="{self.name}">'
 
     BaseSource.__name__ = source_code.lower()
     return BaseSource(**source)
