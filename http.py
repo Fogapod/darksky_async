@@ -40,7 +40,7 @@ class HTTPClient():
             request = await self._session.request('GET', url, params=params)
             if request.status < 300:
                 break
-
+ 
             if request.status in [500, 502]:
                 # Unconditional retry
                 to_sleep = backoff.delay()
@@ -66,6 +66,8 @@ class HTTPClient():
             del data[key]
 
         return Forecast(
+            self,
+            request.headers,
             *high_level,
             **data
         )
