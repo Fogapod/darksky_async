@@ -35,6 +35,7 @@ All you need to do to access this local time is append `Local` to any time-based
 weather = await client.forecast(37.8267, -122.4233)
 
 utc_time = weather.daily.data[0].sunriseTime
->> 
+>>> 14:00pm # Abbreviated for simplicity
 local = weather.daily.data[0].sunriseTimeLocal
+>>> 6:00am # -8 hours behind UTC, this time is accurate for Los Angeles, USA
 ```
