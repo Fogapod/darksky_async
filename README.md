@@ -35,5 +35,6 @@ All you need to do to access this local time is append `Local` to any time-based
 weather = await client.forecast(37.8267, -122.4233)
 
 utc_time = weather.daily.data[0].sunriseTime
+>> 
 local = weather.daily.data[0].sunriseTimeLocal
 ```

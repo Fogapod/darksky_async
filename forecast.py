@@ -38,9 +38,11 @@ class Forecast():
         
         for key, value in optional_params.items():
             if key in IS_DATABLOCK:
-                setattr(self, key, DataBlock(**value))
+                # we give the forecast object as the first arg because
+                # we need the timezone information for the local param
+                setattr(self, key, DataBlock(self, **value))
             elif key == 'currently':
-                setattr(self, key, DataPoint(**value))
+                setattr(self, key, DataPoint(self, **value))
             elif key == 'alerts':
                 # handle alerts array
                 pass
