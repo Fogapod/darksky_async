@@ -1,9 +1,10 @@
 import asyncio
 from .http import HTTPClient
+from .utils import to_timezone
 
 class Client():
-    def __init__(self, key):
-        self.http = HTTPClient()
+    def __init__(self, key, loop=None):
+        self.http = HTTPClient(loop=loop)
         self.key = key
 
     async def forecast(self, latitude, longitude, **optional_params):

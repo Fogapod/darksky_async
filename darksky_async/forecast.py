@@ -2,6 +2,7 @@
 from .datablock import DataBlock
 from .datapoint import DataPoint
 from .flag import Flags
+from .alert import Alert
 
 IS_DATABLOCK = [
     'minutely',
@@ -35,6 +36,7 @@ class Forecast():
         self.raw['latitude'] = latitude
         self.raw['longitude'] = longitude
         self.raw['timezone'] = timezone
+        self.alerts = [] # set default as an empty list
         
         for key, value in optional_params.items():
             if key in IS_DATABLOCK:
@@ -45,7 +47,11 @@ class Forecast():
                 setattr(self, key, DataPoint(self, **value))
             elif key == 'alerts':
                 # handle alerts array
-                pass
+                alerts = []
+                for alert in value:
+                    alerts.append(Alert(self, **alert))
+                setattr(self, key, alerts)
+
             elif key == 'flags':
                 setattr(self, key, Flags(**value))
 
